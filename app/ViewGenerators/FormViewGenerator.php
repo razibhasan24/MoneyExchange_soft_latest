@@ -72,9 +72,9 @@ class FormViewGenerator
 ACTIONS;
 
         $view = <<<BLADE
-@extends('layouts.app')
+@extends('layouts.master')
 @section('page-title', '$model Page')
-@section('page-content')
+@section('pages')
 <div class="page-inner">
     <!-- Page Header -->
     <div class="card bg-info mb-3 p-4">
@@ -231,9 +231,9 @@ BLADE;
     protected function createCreateView($dir, $model, $modelVar, $modelSnakePlural)
     {
         $template = <<<'BLADE'
-@extends('layouts.app')
+@extends('layouts.master')
 @section('page-title', 'Create __MODEL__')
-@section('page-content')
+@section('pages')
     <div class="page-inner">
         <!-- Page Header -->
         <div class="card bg-info mb-3 p-4">
@@ -268,9 +268,9 @@ BLADE;
     protected function createEditView($dir, $model, $modelVar, $modelSnakePlural)
     {
         $template = <<<'BLADE'
-@extends('layouts.app')
+@extends('layouts.master')
 @section('page-title', 'Edit __MODEL__')
-@section('page-content')
+@section('pages')
     <div class="page-inner">
         <!-- Page Header -->
         <div class="card bg-info mb-3 p-4">
@@ -362,9 +362,9 @@ BLADE;
         }
 
         $template = <<<BLADE
-@extends('layouts.app')
+@extends('layouts.master')
 @section('page-title', '$model Details')
-@section('page-content')
+@section('pages')
     <div class="page-inner">
         <!-- Page Header -->
         <div class="card bg-info mb-3 p-4">
@@ -409,7 +409,7 @@ BLADE;
                             @if(\${$modelVar}->status == 'active') bg-success @endif
                             @if(\${$modelVar}->status == 'inactive') bg-danger @endif
                             @if(\${$modelVar}->status == 'pending') bg-warning @endif">
-                            {{ ucfirst(\${$modelVar}->status) }}
+                            {{ ucfirst(${$modelVar}->status) }}
                         </span>
                     @endif
                 </div>

@@ -288,3 +288,42 @@ INSERT INTO core_mex_status (name, description) VALUES
 ('Completed', 'The record is completed');
 
 
+DROP TABLE IF EXISTS core_mex_adjustments;
+CREATE TABLE core_mex_adjustments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    agent_id INT NOT NULL, -- foreign key to core_mex_agents
+    amount DECIMAL(15,2) NOT NULL, -- adjustment amount
+    type ENUM('credit', 'debit') NOT NULL, -- adjustment direction
+    reason VARCHAR(255), -- reason or note for the adjustment
+    created_by INT, -- admin/user who made the adjustment
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO core_mex_adjustments (agent_id, amount, type, reason, created_by)
+VALUES
+(1, 500.00, 'credit', 'Initial balance', 100),
+(2, 200.00, 'debit', 'Overpayment correction', 100),
+(3, 150.00, 'credit', 'Manual bonus', 101),
+(1, 100.00, 'debit', 'Adjustment error', 102),
+(4, 300.00, 'credit', 'Referral reward', 100);
+
+
+DROP TABLE IF EXISTS core_mex_agents;
+CREATE TABLE core_mex_agents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO core_mex_agents (name, email, phone)
+VALUES
+('John Doe', 'john@example.com', '1234567890'),
+('Jane Smith', 'jane@example.com', '2345678901'),
+('Ali Khan', 'ali@example.com', '3456789012'),
+('Maria Gomez', 'maria@example.com', '4567890123'),
+('Chen Wei', 'chen@example.com', '5678901234');
