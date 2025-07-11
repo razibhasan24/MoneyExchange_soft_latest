@@ -53,25 +53,25 @@
               </li>
               <li>
                   <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
-                      <span class="nav-label">Tables</span><i class="fa fa-angle-left arrow"></i></a>
+                      <span class="nav-label">Transactions</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
-                          <a href="table_basic.html">Basic Tables</a>
+                          <a href="{{url('/transactions/create')}}">Create Transactions</a>
                       </li>
                       <li>
-                          <a href="datatables.html">Datatables</a>
+                          <a href="{{url('/transactions')}}">Manage Transactions</a>
                       </li>
                   </ul>
               </li>
               <li>
                   <a href="javascript:;"><i class="sidebar-item-icon fa fa-bar-chart"></i>
-                      <span class="nav-label">Charts</span><i class="fa fa-angle-left arrow"></i></a>
+                      <span class="nav-label">Payments</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
-                          <a href="charts_flot.html">Flot Charts</a>
+                          <a href="{{url('/payments/create')}}">Create Payments</a>
                       </li>
                       <li>
-                          <a href="charts_morris.html">Morris Charts</a>
+                          <a href="charts_morris.html">Manage Payments</a>
                       </li>
                       <li>
                           <a href="chartjs.html">Chart.js</a>
@@ -83,10 +83,13 @@
               </li>
               <li>
                   <a href="javascript:;"><i class="sidebar-item-icon fa fa-map"></i>
-                      <span class="nav-label">Maps</span><i class="fa fa-angle-left arrow"></i></a>
+                      <span class="nav-label">Purchase</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
-                          <a href="maps_vector.html">Vector maps</a>
+                          <a href="{{url('/purchases/create')}}">Create Purchase</a>
+                      </li>
+                      <li>
+                          <a href="{{url('/purchases')}}">Manage Purchase</a>
                       </li>
                   </ul>
               </li>
@@ -98,13 +101,13 @@
               <li class="heading">PAGES</li>
               <li>
                   <a href="javascript:;"><i class="sidebar-item-icon fa fa-envelope"></i>
-                      <span class="nav-label">Mailbox</span><i class="fa fa-angle-left arrow"></i></a>
+                      <span class="nav-label">Invoice</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
-                          <a href="mailbox.html">Inbox</a>
+                          <a href="{{url('/invoices/create')}}">Create MR</a>
                       </li>
                       <li>
-                          <a href="mail_view.html">Mail view</a>
+                          <a href="{{url("/invoices")}}">Manage MR</a>
                       </li>
                       <li>
                           <a href="mail_compose.html">Compose mail</a>
