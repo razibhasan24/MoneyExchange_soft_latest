@@ -71,7 +71,7 @@
                           <a href="{{url('/payments/create')}}">Create Payments</a>
                       </li>
                       <li>
-                          <a href="charts_morris.html">Manage Payments</a>
+                          <a href="{{ url('/payments') }}">Manage Payments</a>
                       </li>
                       <li>
                           <a href="chartjs.html">Chart.js</a>
@@ -104,10 +104,10 @@
                       <span class="nav-label">Invoice</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
-                          <a href="{{url('/invoices/create')}}">Create MR</a>
+                          <a href="{{url('/money_receipts/create')}}">Create MR</a>
                       </li>
                       <li>
-                          <a href="{{url("/invoices")}}">Manage MR</a>
+                          <a href="{{url("/money_receipts")}}">Manage MR</a>
                       </li>
                       <li>
                           <a href="mail_compose.html">Compose mail</a>

@@ -78,6 +78,7 @@ CREATE TABLE core_mex_transactions (
     FOREIGN KEY (currency_to) REFERENCES core_mex_currencies(id)
 );
 
+
 INSERT INTO core_mex_transactions (customer_id, currency_from, currency_to, amount_from, amount_to, rate, agent_id, remarks, receipt_document) VALUES
 (1, 1, 5, 100.00, 10550.00, 105.500000, 101, 'Exchange USD to BDT', 'receipt1.pdf'),
 (2, 2, 5, 200.00, 24150.00, 120.750000, 102, 'Exchange EUR to BDT', 'receipt2.pdf'),
@@ -327,3 +328,6 @@ VALUES
 ('Ali Khan', 'ali@example.com', '3456789012'),
 ('Maria Gomez', 'maria@example.com', '4567890123'),
 ('Chen Wei', 'chen@example.com', '5678901234');
+
+
+

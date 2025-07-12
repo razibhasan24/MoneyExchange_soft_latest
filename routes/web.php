@@ -24,3 +24,4 @@ Route::resource('money_stock_adjustment_types', App\Http\Controllers\MoneyStockA
 Route::resource('money_stock_adjustments', App\Http\Controllers\MoneyStockAdjustmentController::class);
 Route::resource('money_stock_adjustment_details', App\Http\Controllers\MoneyStockAdjustmentDetailController::class);
 Route::resource('statuses', App\Http\Controllers\StatusController::class);
+Route::resource('money_receipts', App\Http\Controllers\MoneyReceiptController::class);

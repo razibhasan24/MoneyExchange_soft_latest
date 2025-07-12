@@ -24,7 +24,7 @@
     }
 
     header {
-      background: #007bff;
+      background: #233e8aff;
       color: #fff;
       padding: 20px;
       display: flex;

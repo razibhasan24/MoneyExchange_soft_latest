@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @section('page-title', 'Create Purchase')
 @section('pages')
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Money Exchange - Create Purchase</title>
@@ -11,23 +12,31 @@
     body {
       background-color: #f8f9fa;
     }
+
     .main-header {
-      background-color: #0d6efd; /* Bootstrap primary */
+      background-color: #0d6efd;
+      /* Bootstrap primary */
       color: #fff;
       padding: 20px;
     }
-    .main-header .left, .main-header .right {
+
+    .main-header .left,
+    .main-header .right {
       width: 50%;
     }
+
     .main-header img {
       max-height: 50px;
     }
+
     .item-table th {
-      background-color: #0dcaf0; /* Bootstrap info */
+      background-color: #0dcaf0;
+      /* Bootstrap info */
       color: #fff;
     }
   </style>
 </head>
+
 <body>
   <!-- ✅ HEADER -->
   <div class="main-header d-flex justify-content-between align-items-center">
@@ -108,7 +117,7 @@
     <button id="submitBtn" class="btn btn-success">Submit Purchase</button>
 
     <!-- JSON Output -->
-    <pre id="output" class="mt-4 bg-dark text-white p-3 rounded"></pre>
+    <!-- <pre id="output" class="mt-4 bg-dark text-white p-3 rounded"></pre> -->
   </div>
 
   <!-- ✅ JS -->
@@ -116,15 +125,15 @@
     let items = [];
     let itemIdCounter = 1;
 
-    document.getElementById('addItemBtn').addEventListener('click', function () {
+    document.getElementById('addItemBtn').addEventListener('click', function() {
       const itemDesc = document.getElementById('item_description').value;
       const qty = parseFloat(document.getElementById('quantity').value);
       const unitPrice = parseFloat(document.getElementById('unit_price').value);
       const totalPrice = qty * unitPrice;
 
       const item = {
-        id: itemIdCounter++,
-        purchase_id: 1, // For demo — your back-end will replace this
+        // id: itemIdCounter++,
+        // purchase_id: 1, 
         item_description: itemDesc,
         quantity: qty,
         unit_price: unitPrice,
@@ -147,9 +156,9 @@
       document.getElementById('unit_price').value = '';
     });
 
-    document.getElementById('submitBtn').addEventListener('click', function () {
+    document.getElementById('submitBtn').addEventListener('click', async function() {
       const data = {
-        id: 1, // for demo
+        // id: 1,
         supplier_name: document.getElementById('supplier_name').value,
         purchase_date: document.getElementById('purchase_date').value,
         total_amount: parseFloat(document.getElementById('total_amount').value),
@@ -157,12 +166,40 @@
         items: items
       };
 
-      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      // document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+
+      //saving to the database
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/purchases', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('Purchase created:', result);
+        alert('Purchase created successfully!');
+
+        //redirect to the index page
+        window.location.assign("{{ route('purchases.index') }}");
+
+      } catch (error) {
+        console.error('Failed to create Purchase:', error);
+        alert('Error creating Purchase.');
+      }
 
       console.log(data);
     });
   </script>
 </body>
+
 </html>
 
 
