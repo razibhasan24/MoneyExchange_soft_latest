@@ -79,7 +79,7 @@
   }
 
   th {
-    background: #0055a5;
+    background: #003366;
     color: #fff;
     padding: 8px;
   }
@@ -89,7 +89,7 @@
   }
 
   .btn {
-    background: #0055a5;
+    background: #003366;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -122,7 +122,7 @@
 
   <!-- ✅ BODY -->
   <div class="container">
-    <h2>Create Money Receipt</h2>
+    <h2 class="mb-3 text-center text-3x2 font-bold">Create Money Receipt</h2>
 
     <!-- Master Fields -->
     <div class="row">
@@ -136,7 +136,7 @@
       </div>
       <div class="col-3">
         <label>Customer ID</label>
-        <select name="customer-id" id="customer-id" class="form-control">
+        <select name="customer-id" id="customer_id" class="form-control">
           <option value="">Select Customer</option>
           @foreach ($customers as $customer)
             <option value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -145,7 +145,12 @@
       </div>
       <div class="col-3">
         <label>Agent ID</label>
-        <input type="text" id="agent_id">
+       <select name="agent-id" id="agent_id" class="form-control">
+        <option value="">Select Agent</option>
+        @foreach ($agents as $agent )
+        <option value="{{$agent->id}}">{{$agent->name}}</option>
+        @endforeach
+       </select>
       </div>
       <div class="col-3">
         <label>Total Amount</label>
@@ -153,13 +158,20 @@
       </div>
       <div class="col-3">
         <label>Payment Method</label>
-        <input type="text" id="payment_method">
+        <select name="payment-id" id="payment_method" class="form-control">
+            <option value="">Select Payment</option>
+            @foreach ($payments as $payment)
+            <option value="{{$payment->id}}">{{$payment->payment_method}}</option>
+            @endforeach
+        </select>
       </div>
       <div class="col-3">
         <label>Status</label>
-        <select id="status">
-          <option value="Pending">Pending</option>
-          <option value="Paid">Paid</option>
+        <select name="status-id" id="status" class="form-control">
+            <option value="">Select Status</option>
+            @foreach ($statuses as $status)
+            <option value="{{$status->id}}">{{$status->name}}</option>
+            @endforeach
         </select>
       </div>
       <div class="col-3">
@@ -177,7 +189,7 @@
     </div>
 
     <!-- Detail Fields -->
-    <h3>Add Receipt Detail</h3>
+    <h3 class="mb-3 text-center text-3xl font-bold">Add Receipt Detail</h3>
     <div class="row">
       <div class="col-2">
         <label>Currency Code</label>
@@ -205,7 +217,7 @@
         <input type="number" id="fee">
       </div>
       <div class="col-2" style="display:flex;align-items:center; margin-top: 15px;">
-        <button class="btn" id="addItemBtn">Add Item</button>
+        <button class="btn btn-success w-100" id="addItemBtn">Add Item</button>
       </div>
     </div>
 
@@ -225,7 +237,7 @@
 
     <!-- Submit -->
     <div style="margin-top:20px;">
-      <button class="btn" id="submitBtn">Save Money Receipt</button>
+      <button class="btn btn-success" id="submitBtn">Save Money Receipt</button>
     </div>
 
     <!-- Debug -->

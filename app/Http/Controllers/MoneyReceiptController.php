@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Customer;
 use App\Models\Agent;
+use App\Models\Status;
+use App\Models\Payment;
 
 
 class MoneyReceiptController extends Controller
@@ -21,8 +23,10 @@ class MoneyReceiptController extends Controller
     {
         $transactions = \App\Models\Transaction::all();
         $customers = \App\Models\Customer::all();
-        // $agents = \App\Models\Agent::all();
+        $agents = \App\Models\Agent::all();
         $currencies= \App\Models\Currency::all();
+        $statuses=\App\Models\Status::all();
+        $payments=\App\Models\Payment::all();
 
         return view('pages.money_receipts.create', [
             'mode' => 'create',
@@ -30,6 +34,9 @@ class MoneyReceiptController extends Controller
             'transactions' => $transactions,
             'customers' => $customers,
             'currencies' => $currencies,
+            'agents'=>$agents,
+            'statuses'=>$statuses,
+            'payments'=>$payments,
 
         ]);
     }

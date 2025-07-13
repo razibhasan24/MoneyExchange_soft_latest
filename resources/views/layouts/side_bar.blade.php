@@ -16,7 +16,7 @@
               </li>
               <li class="heading">FEATURES</li>
               <li>
-                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-money"></i>
                       <span class="nav-label">Currencies</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
@@ -38,7 +38,7 @@
                   </ul>
               </li>
               <li>
-                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-edit"></i>
+                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-university"></i>
                       <span class="nav-label">Money Stock</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
@@ -52,7 +52,7 @@
                   </ul>
               </li>
               <li>
-                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
+                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-credit-card"></i>
                       <span class="nav-label">Transactions</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
@@ -64,7 +64,7 @@
                   </ul>
               </li>
               <li>
-                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-bar-chart"></i>
+                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-paypal"></i>
                       <span class="nav-label">Payments</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
@@ -82,7 +82,7 @@
                   </ul>
               </li>
               <li>
-                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-map"></i>
+                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-product-hunt"></i>
                       <span class="nav-label">Purchase</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
@@ -93,15 +93,15 @@
                       </li>
                   </ul>
               </li>
-              <li>
+              {{-- <li>
                   <a href="icons.html"><i class="sidebar-item-icon fa fa-smile-o"></i>
                       <span class="nav-label">Icons</span>
                   </a>
               </li>
-              <li class="heading">PAGES</li>
+              <li class="heading">PAGES</li> --}}
               <li>
-                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-envelope"></i>
-                      <span class="nav-label">Invoice</span><i class="fa fa-angle-left arrow"></i></a>
+                  <a href="javascript:;"><i class="sidebar-item-icon fa fa-gg-circle"></i>
+                      <span class="nav-label">Accounts</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
                           <a href="{{url('/money_receipts/create')}}">Create MR</a>
