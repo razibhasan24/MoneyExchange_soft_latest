@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 
@@ -17,9 +18,11 @@ class PurchaseController extends Controller
     public function create()
     {
 
+        $statuses=Status::all();
         return view('pages.purchases.create', [
             'mode' => 'create',
             'purchase' => new Purchase(),
+            'statuses'=>$statuses,
 
         ]);
     }
