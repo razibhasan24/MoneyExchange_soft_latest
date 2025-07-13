@@ -61,10 +61,10 @@
         <!-- Table -->
         <div class="table-responsive rounded-3">
             <table class="table table-hover">
-                <thead class="table-primary"><tr><th>Id</th><th>Currency id</th><th>Quantity</th><th>Updated at</th><th>Actions</th></tr></thead>
+                <thead class="table-primary"><tr><th>Id</th><th>Customer id</th><th>Agent id</th><th>Currency code</th><th>Currency name</th><th>Availabel amount</th><th>Transaction type</th><th>Payment method</th><th>Remarks</th><th>Created at</th><th>Updated at</th><th>Actions</th></tr></thead>
                 <tbody>
                 @foreach ($money_stocks as $item)
-                    <tr><td>{{ $item->id }}</td><td>{{ optional($item->currency)->name ?? $item->currency_id }}</td><td>{{ $item->quantity }}</td><td>{{ $item->updated_at }}</td><td style="min-width:220px">
+                    <tr><td>{{ $item->id }}</td><td>{{ optional($item->customer)->name ?? $item->customer_id }}</td><td>{{ optional($item->agent)->name ?? $item->agent_id }}</td><td>{{ $item->currency_code }}</td><td>{{ $item->currency_name }}</td><td>{{ $item->availabel_amount }}</td><td>{{ $item->transaction_type }}</td><td>{{ $item->payment_method }}</td><td>{{ $item->remarks }}</td><td>{{ $item->created_at }}</td><td>{{ $item->updated_at }}</td><td style="min-width:220px">
     <a href="{{ route('money_stocks.show', $item->id) }}" class="btn btn-sm btn-info">View</a>
     <a href="{{ route('money_stocks.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
     <form action="{{ route('money_stocks.destroy', $item->id) }}" method="POST" style="display:inline;">

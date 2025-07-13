@@ -1,28 +1,23 @@
 @extends('layouts.master')
 @section('page-title', 'Create Purchase')
 @section('pages')
-   <div class="container">
-     <style>
+<div class="container">
+    <style>
         body {
             background-color: #454b55;
-            color: black !important;
+            /* color: black !important; */
         }
 
         .main-header {
-            background-color: #05054a;
+            background-color: #fff;
             /* Bootstrap primary */
-            color: #fff;
+            color: black;
             padding: 20px;
             margin-top: 25px;
         }
 
-        .main-header .left,
-        .main-header .right {
-            /* width: 50%; */
-        }
-
         .main-header img {
-            max-height: 50px;
+            max-height: 130px;
         }
 
         .item-table th {
@@ -37,11 +32,12 @@
     <!-- ✅ HEADER -->
     <div class="main-header d-flex justify-content-between align-items-center">
         <div class="left">
-            {{-- <img src="https://via.placeholder.com/150x50?text=Logo" alt="Company Logo" /> --}}
-            <img src="{{ asset('img/logos/Money_Exchange_logo.jpg') }}" alt="logo">
-            <p class="mb-0">Money Exchange Ltd.</p>
+             <!-- <img src="https://via.placeholder.com/150x50?text=Logo" alt="Company Logo" />  -->
+            <img src="{{ asset('assets/img/logos/Money_Exchange_logo.jpg') }}" alt="logo">
+            
         </div>
-        <div class="right text-end">
+        <div class="right text-end" style="color: #000000ff; font-weight: bold; font-size: 20px;">
+            <p class="mb-0">Money Exchange Ltd.</p>
             <p class="mb-0">1234 Exchange Street</p>
             <p class="mb-0">Dhaka, Bangladesh</p>
             <p class="mb-0">info@moneyexchange.com</p>
@@ -140,11 +136,12 @@
             items.push(item);
 
             const row = `<tr>
-        <td>${itemDesc}</td>
-        <td>${qty}</td>
-        <td>${unitPrice}</td>
-        <td>${totalPrice}</td>
-      </tr>`;
+                            <td>${itemDesc}</td>
+                            <td>${qty}</td>
+                            <td>${unitPrice}</td>
+                            <td>${totalPrice}</td>
+                        </tr>`;
+                        
             document.querySelector('.item-table tbody').insertAdjacentHTML('beforeend', row);
 
             // Clear item fields
@@ -196,7 +193,7 @@
         });
     </script>
 
-   </div>
+</div>
 
 
 @endsection

@@ -42,11 +42,11 @@
                       <span class="nav-label">Money Stock</span><i class="fa fa-angle-left arrow"></i></a>
                   <ul class="nav-2-level collapse">
                       <li>
-                          <a href="{{url('stocks/create')}}">
+                          <a href="{{url('/money_stocks/create')}}">
                             Create Money Stock</a>
                       </li>
                       <li>
-                          <a href="{{url('stocks')}}">
+                          <a href="{{url('/money_stocks')}}">
                             Manage Money Stock</a>
                       </li>
                   </ul>

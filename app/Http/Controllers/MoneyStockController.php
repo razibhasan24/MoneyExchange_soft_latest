@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\MoneyStock;
 use Illuminate\Http\Request;
-use App\Models\Currency;
+use App\Models\Customer;
+use App\Models\Agent;
 
 
 class MoneyStockController extends Controller
@@ -17,12 +18,14 @@ class MoneyStockController extends Controller
 
     public function create()
     {
-        $currencies = \App\Models\Currency::all();
+        $customers = \App\Models\Customer::all();
+        $agents = \App\Models\Agent::all();
 
         return view('pages.money_stocks.create', [
             'mode' => 'create',
             'moneyStock' => new MoneyStock(),
-            'currencies' => $currencies,
+            'customers' => $customers,
+            'agents' => $agents,
 
         ]);
     }
@@ -44,12 +47,14 @@ class MoneyStockController extends Controller
 
     public function edit(MoneyStock $moneyStock)
     {
-        $currencies = \App\Models\Currency::all();
+        $customers = \App\Models\Customer::all();
+        $agents = \App\Models\Agent::all();
 
         return view('pages.money_stocks.edit', [
             'mode' => 'edit',
             'moneyStock' => $moneyStock,
-            'currencies' => $currencies,
+            'customers' => $customers,
+            'agents' => $agents,
 
         ]);
     }

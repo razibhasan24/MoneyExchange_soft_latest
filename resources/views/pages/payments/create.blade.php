@@ -24,8 +24,8 @@
     }
 
     header {
-      background: #233e8aff;
-      color: #fff;
+      /* background: #233e8aff; */
+      color: black;
       padding: 20px;
       display: flex;
       justify-content: space-between;
@@ -110,7 +110,7 @@
     }
 
     th {
-      background: #343a40;
+      background: #29408dff;
       color: #fff;
     }
 

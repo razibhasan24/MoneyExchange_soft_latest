@@ -36,7 +36,7 @@ class MoneyReciptsController extends Controller
         $mr->notes=$request->notes;
         $mr-> save();
 
-        $items=$request->item;
+        $items=$request->items;
     foreach ($items as $item) {
         $details=new MoneyReceiptDetail();
         $details->receipt_id= $mr->id;
@@ -45,12 +45,9 @@ class MoneyReciptsController extends Controller
         $details->exchange_rate=$item['exchange_rate'];
         $details->equivalent_amount=$item['equivalent_amount'];
         $details->fee=$item['fee'];
-        $details->save();
-
-        return response()->json($mr);
-
-
+        $details->save();        
     }
+    return response()->json($mr);
 
 
     }

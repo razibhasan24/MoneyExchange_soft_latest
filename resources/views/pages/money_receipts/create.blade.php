@@ -16,13 +16,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #003366;
-    color: #fff;
+    /* background: #003366; */
+    color: black;
     padding: 20px;
+    font-weight: ;
+    font-size: 15px;
   }
 
   .main-header img {
-    max-height: 50px;
+    max-height: 130px;
+    
   }
 
   .container {
@@ -111,15 +114,16 @@
   <!-- ✅ HEADER -->
   <div class="main-header mb-3">
     <div>
-      <img src="https://via.placeholder.com/150x50?text=Logo" alt="Logo">
-      <p>Money Exchange Company Ltd.</p>
+      <img src="{{ asset('assets/img/logos/money-exchange-logo.png') }}" alt="Logo">
+      
     </div>
     <div style="text-align:right;">
+      <p>Money Exchange Company Ltd.</p>
       <p>123 Exchange Road, Dhaka</p>
       <p>info@moneyexchange.com</p>
+
     </div>
   </div>
-
   <!-- ✅ BODY -->
   <div class="container">
     <h2 class="mb-3 text-center text-3x2 font-bold">Create Money Receipt</h2>
@@ -128,11 +132,16 @@
     <div class="row">
       <div class="col-3">
         <label>Receipt Number</label>
-        <input type="text" id="receipt_number">
+        <input disabled type="text" id="receipt_number" value="{{ $newMrNo }}">
       </div>
       <div class="col-3">
         <label>Transaction ID</label>
-        <input type="text" id="transaction_id">
+        <select name="transaction-id" id="transaction_id" class="form-control">
+            <option value="">Transaction Id</option>
+            @foreach ($transactions as $transaction)
+            <option value="{{$transaction->id}}">{{$transaction->status}}</option>
+            @endforeach
+        </select>
       </div>
       <div class="col-3">
         <label>Customer ID</label>
@@ -176,7 +185,12 @@
       </div>
       <div class="col-3">
         <label>Issued By</label>
-        <input type="text" id="issued_by">
+        <select name="authority_id" id="issued_by" class="form-control">
+            <option value="">Select authority</option>
+            @foreach ($authorities as $authority)
+            <option value="{{$authority->name}}">{{$authority->name}}</option>
+            @endforeach
+        </select>
       </div>
       <div class="col-3">
         <label>Issued Date</label>
@@ -196,7 +210,7 @@
         <select name="currency_code" id="currency_code" class="form-control">
           <option value="">Select Currency</option>
           @foreach ($currencies as $currency)
-            <option value="{{ $currency->id }}">{{ $currency->currency_code }}</option>
+            <option value="{{ $currency->currency_code }}">{{ $currency->currency_code }}</option>
           @endforeach
         </select>
       </div>
@@ -259,14 +273,14 @@
 
       const item = {
         id: itemId++,
-        receipt_id: 1, // For example only
+        receipt_id: 1,
         currency_code,
         amount,
         exchange_rate,
         equivalent_amount,
         fee,
         // type,
-        created_at: new Date().toISOString()
+        // created_at: new Date().toISOString()
       };
 
       items.push(item);
@@ -290,7 +304,7 @@
       // document.getElementById('type').value = '';
     });
 
-    document.getElementById('submitBtn').addEventListener('click', function() {
+    document.getElementById('submitBtn').addEventListener('click', async function() {
       const data = {
         receipt_number: document.getElementById('receipt_number').value,
         transaction_id: document.getElementById('transaction_id').value,
@@ -302,35 +316,44 @@
         issued_by: document.getElementById('issued_by').value,
         issued_date: document.getElementById('issued_date').value,
         notes: document.getElementById('notes').value,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
+        // created_at: new Date().toISOString(),
+        // updated_at: new Date().toISOString(),
         items: items
       };
 
       document.getElementById('output').textContent = JSON.stringify(data, null, 2);
 
-      fetch('/api/money-receipts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => {
-          if (!response.ok) throw new Error('Failed');
-          return response.json();
-        })
-        .then(res => {
-          alert('Successfully saved!');
-          window.location.href = '/money-receipts';
-        })
-        .catch(err => {
-          alert('Error saving data');
-          console.error(err);
-        });
+      //saving to the database
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/money_receipts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log('Money Receipt created:', result);
+                alert('Money Receipt created successfully!');
+
+                //redirect to the index page
+                window.location.assign("{{ route('money_receipts.index') }}");
+
+            } catch (error) {
+                console.error('Failed to create Money Receipt:', error);
+                alert('Error creating Money Receipt.');
+            }
+
+            console.log(data);
+
+      
     });
   </script>
 </div>
-
-
 @endsection

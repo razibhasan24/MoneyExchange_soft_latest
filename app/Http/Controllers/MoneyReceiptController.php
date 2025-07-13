@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Customer;
 use App\Models\Agent;
+use App\Models\Authority;
+use App\Models\Currency;
 use App\Models\Status;
 use App\Models\Payment;
 
@@ -20,13 +22,17 @@ class MoneyReceiptController extends Controller
     }
 
     public function create()
-    {
-        $transactions = \App\Models\Transaction::all();
-        $customers = \App\Models\Customer::all();
-        $agents = \App\Models\Agent::all();
-        $currencies= \App\Models\Currency::all();
-        $statuses=\App\Models\Status::all();
-        $payments=\App\Models\Payment::all();
+    {   
+        $mrNoMax=MoneyReceipt::max('receipt_number');
+        $mrNoNumber=substr($mrNoMax,4);
+        $newMrNo='RCPT'. str_pad($mrNoNumber+1,3,'0', STR_PAD_LEFT);
+        $transactions = Transaction::all();
+        $customers = Customer::all();
+        $agents = Agent::all();
+        $currencies= Currency::all();
+        $statuses=Status::all();
+        $payments=Payment::all();
+        $authorities=Authority::all();
 
         return view('pages.money_receipts.create', [
             'mode' => 'create',
@@ -37,6 +43,8 @@ class MoneyReceiptController extends Controller
             'agents'=>$agents,
             'statuses'=>$statuses,
             'payments'=>$payments,
+            'authorities'=>$authorities,
+            'newMrNo'=>$newMrNo,
 
         ]);
     }
