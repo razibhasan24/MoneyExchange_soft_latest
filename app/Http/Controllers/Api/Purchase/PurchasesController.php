@@ -23,7 +23,7 @@ class PurchasesController extends Controller
     public function store(Request $request)
     {
        $purchase=new Purchase();
-       $purchase->supplier_name=$request->supplier_name;
+       $purchase->supplier_id=$request->supplier_id;
        $purchase->purchase_date=$request->purchase_date;
        $purchase->total_amount=$request->total_amount;
        $purchase->status=$request->status;

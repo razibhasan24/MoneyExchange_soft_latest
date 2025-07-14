@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agent;
+use App\Models\Currency;
 use App\Models\Purchase;
 use App\Models\Status;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -19,10 +22,17 @@ class PurchaseController extends Controller
     {
 
         $statuses=Status::all();
+        $suppliers=Supplier::all();
+        $currencies=Currency::all();
+
+
+        
         return view('pages.purchases.create', [
             'mode' => 'create',
             'purchase' => new Purchase(),
             'statuses'=>$statuses,
+            'suppliers'=>$suppliers,
+            'currencies'=>$currencies,
 
         ]);
     }
@@ -39,7 +49,10 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
-        return view('pages.purchases.view', compact('purchase'));
+        $supplier=Supplier::find($purchase->supplier_id);
+        $agent=Agent::find($purchase->agent_id);
+        $details=DB::table('');
+        return view('pages.purchases.view', compact('purchase','supplier','agent'));
     }
 
     public function edit(Purchase $purchase)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -25,3 +26,4 @@ Route::resource('money_stock_adjustments', App\Http\Controllers\MoneyStockAdjust
 Route::resource('money_stock_adjustment_details', App\Http\Controllers\MoneyStockAdjustmentDetailController::class);
 Route::resource('statuses', App\Http\Controllers\StatusController::class);
 Route::resource('money_receipts', App\Http\Controllers\MoneyReceiptController::class);
+Route::resource('agents',AgentController::class);

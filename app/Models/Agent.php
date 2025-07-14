@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agent extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'email', 'phone', 'created_at', 'updated_at'];
 
-    public $timestamps = false; // Disable timestamps
 
 }
